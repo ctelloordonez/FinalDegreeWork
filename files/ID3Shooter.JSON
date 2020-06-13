@@ -1,0 +1,1 @@
+{"root":{"daughterNodes":{"Empty":{"action":"Defend","examples":[]},"With Ammo":{"daughterNodes":{"In Cover":{"action":"Attack","examples":[]},"Exposed":{"action":"Defend","examples":[]}},"testValue":"Cover","examples":[]}},"testValue":"Ammo","examples":[]}}

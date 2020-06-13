@@ -1,0 +1,1 @@
+{"root":{"daughterNodes":{"rain":{"daughterNodes":{"TRUE":{"action":"N","examples":[]},"FALSE":{"action":"P","examples":[]}},"testValue":"Windy","examples":[]},"sunny":{"daughterNodes":{"high":{"action":"N","examples":[]},"normal":{"action":"P","examples":[]}},"testValue":"Humidity","examples":[]},"overcast":{"action":"P","examples":[]}},"testValue":"Outlook","examples":[]}}
