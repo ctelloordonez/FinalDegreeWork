@@ -1,0 +1,6 @@
+Action,Health,Cover,Ammo
+Run,Healthy,Exposed,Empty
+Attack,Healthy,In Cover,With Ammo
+Attack,Hurt,In Cover,With Ammo
+Defend,Healthy,In Cover,Empty
+Defend,Hurt,In Cover,Empty
