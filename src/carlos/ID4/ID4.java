@@ -80,7 +80,7 @@ public class ID4 extends DecisionTree {
         // Fill the daughter nodes
         for(List<Example> set : bestSets){
             // Find the value for the attribute in this set
-            String attributeValue = set.get(0).getValue(bestSplitAttribute);
+            Object attributeValue = set.get(0).getValue(bestSplitAttribute);
 
             // Create a daughter node for the tree
             DecisionTreeNode daughter;

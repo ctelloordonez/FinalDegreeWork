@@ -30,27 +30,35 @@ public class MakeID4 {
         ID4 decisionTree = new ID4(root);
         decisionTree.MakeTree(examplesList, attributesList);
 
-        Hashtable<String, String> a1 = new Hashtable<>();
+        String json = gson.toJson(decisionTree);
+
+        FileManager.CreateFile(decisionTreeFilename + ".JSON");
+        FileManager.WriteToFile(decisionTreeFilename + ".JSON", json);
+
+        Hashtable<String, Object> a1 = new Hashtable<>();
         a1.put("Health", "Hurt");
         a1.put("Cover", "Exposed");
         a1.put("Ammo", "With Ammo");
         Example e1 = new Example("Defend", a1);
 
-        Hashtable<String, String> a2 = new Hashtable<>();
+        Hashtable<String, Object> a2 = new Hashtable<>();
         a2.put("Health", "Healthy");
         a2.put("Cover", "Exposed");
         a2.put("Ammo", "With Ammo");
         Example e2 = new Example("Run", a2);
 
         decisionTree.IncrementTree(e1);
-        decisionTree.IncrementTree(e2);
-
-
-
-        String json = gson.toJson(decisionTree);
+        json = gson.toJson(decisionTree);
 
         System.out.println("Saving JSON at files");
-        FileManager.CreateFile(decisionTreeFilename + ".JSON");
-        FileManager.WriteToFile(decisionTreeFilename + ".JSON", json);
+        FileManager.CreateFile(decisionTreeFilename + "FirstIncrement" + ".JSON");
+        FileManager.WriteToFile(decisionTreeFilename + "FirstIncrement" + ".JSON", json);
+
+        decisionTree.IncrementTree(e2);
+        json = gson.toJson(decisionTree);
+
+        System.out.println("Saving JSON at files");
+        FileManager.CreateFile(decisionTreeFilename + "SecondIncrement" + ".JSON");
+        FileManager.WriteToFile(decisionTreeFilename + "SecondIncrement" + ".JSON", json);
     }
 }
