@@ -143,7 +143,7 @@ public class InductionOfDecisionTrees {
 
         int actionsCount = actionTallies.size();
 
-        if (actionsCount == 1) return 0;
+        if (actionsCount <= 1) return 0;
 
         float entropy = 0;
 
