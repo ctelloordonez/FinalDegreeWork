@@ -5,19 +5,19 @@ import java.util.Hashtable;
 import java.util.List;
 
 public class Example {
-    public String action;
-    Hashtable<String, String> attributes;
+    public Object action;
+    Hashtable<String, Object> attributes;
 
-    public Example(String action, Hashtable<String, String> attributes){
+    public Example(Object action, Hashtable<String, Object> attributes){
         this.action = action;
         this.attributes = attributes;
     }
 
-    public String getValue(String attribute){
+    public Object getValue(String attribute){
         return attributes.get(attribute);
     }
 
-    public Hashtable<String, String> getObservation(){
+    public Hashtable<String, Object> getObservation(){
         return attributes;
     }
 
@@ -28,7 +28,7 @@ public class Example {
     public void printExample(){
         System.out.print(action + ":");
         for(String attribute : attributes.keySet()){
-            System.out.print("\t" + getValue(attribute));
+            System.out.print("\t" + getValue(attribute).toString());
         }
         System.out.println();
     }

@@ -25,7 +25,7 @@ public class FileManager {
         while(example != null){
             String[] columns = example.split(",");
             String action = columns[0];
-            Hashtable<String,String> attributes = new Hashtable<>();
+            Hashtable<String,Object> attributes = new Hashtable<>();
             for(int i = 1; i < columns.length; i++){
                 attributes.put(headers[i], columns[i]);
             }
