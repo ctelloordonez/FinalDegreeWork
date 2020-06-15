@@ -70,7 +70,7 @@ public class InductionOfDecisionTrees {
         // Fill the daughter nodes
         for(List<Example> set : bestSets){
             // Find the value for the attribute in this set
-            String attributeValue = set.get(0).getValue(bestSplitAttribute);
+            Object attributeValue = set.get(0).getValue(bestSplitAttribute);
 
             // Create a daughter node for the tree
             DecisionTreeNode daughter;
@@ -97,7 +97,7 @@ public class InductionOfDecisionTrees {
     public static List<List<Example>> splitByAttribute(List<Example> examples, String attribute){
 
         // Create a set of list, so we can access each list by the attribute value
-        HashMap<String, List<Example>> sets = new HashMap<>();
+        HashMap<Object, List<Example>> sets = new HashMap<>();
 
         // For each example
         for (Example example : examples){
@@ -134,7 +134,7 @@ public class InductionOfDecisionTrees {
 
         if(exampleCount == 0) return 0;
 
-        Hashtable<String, Integer> actionTallies = new Hashtable<>();
+        Hashtable<Object, Integer> actionTallies = new Hashtable<>();
 
         for(Example example : examples){
             int tally = actionTallies.get(example.action) != null ? actionTallies.get(example.action) + 1 : 1;
@@ -143,7 +143,7 @@ public class InductionOfDecisionTrees {
 
         int actionsCount = actionTallies.size();
 
-        if (actionsCount == 0) return 0;
+        if (actionsCount == 1) return 0;
 
         float entropy = 0;
 
@@ -151,7 +151,7 @@ public class InductionOfDecisionTrees {
 
         for(int actionTally : actions){
             float proportion = (float)actionTally / (float)exampleCount;
-            entropy -= proportion * log2(proportion);
+            entropy -= proportion * log(proportion, actionsCount);
         }
         return entropy;
     }
@@ -180,7 +180,7 @@ public class InductionOfDecisionTrees {
      * @param x value
      * @return log2 of x
      */
-    private static double log2(float x){
-        return log(x) / log(2);
+    private static double log(float x, int actionsCount){
+        return Math.log(x) / Math.log(actionsCount);
     }
 }
