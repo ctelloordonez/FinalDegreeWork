@@ -12,7 +12,7 @@ public abstract class DecisionTree {
         this.root = root;
     }
 
-    public DecisionTreeNode makeDecision(Hashtable<String, String> observation){
+    public DecisionTreeNode makeDecision(Hashtable<String, Object> observation){
         return root.makeDecision(observation);
     }
 

@@ -3,19 +3,19 @@ package carlos.DecisionTree;
 import java.util.Hashtable;
 
 public class Action extends DecisionTreeNode {
-    public String action;
+    public Object action;
 
-    public Action(String action){
+    public Action(Object action){
         super();
         this.action = action;
     }
 
-    public String getAction(){
+    public Object getAction(){
         return action;
     }
 
     @Override
-    public DecisionTreeNode makeDecision(Hashtable<String, String> observations) {
+    public DecisionTreeNode makeDecision(Hashtable<String, Object> observations) {
         return this;
     }
 }

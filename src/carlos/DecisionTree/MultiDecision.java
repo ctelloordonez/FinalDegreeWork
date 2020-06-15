@@ -3,7 +3,7 @@ package carlos.DecisionTree;
 import java.util.Hashtable;
 
 public class MultiDecision extends DecisionTreeNode {
-    public Hashtable<String, DecisionTreeNode> daughterNodes;
+    public Hashtable<Object, DecisionTreeNode> daughterNodes;
     public String testValue;
 
     public MultiDecision(){
@@ -12,13 +12,16 @@ public class MultiDecision extends DecisionTreeNode {
         testValue = null;
     }
 
-    public DecisionTreeNode getBranch(Hashtable<String, String> observation){
+    public DecisionTreeNode getBranch(Hashtable<String, Object> observation){
         return daughterNodes.get(observation.get(testValue));
     }
 
     @Override
-    public DecisionTreeNode makeDecision(Hashtable<String, String> observation) {
+    public DecisionTreeNode makeDecision(Hashtable<String, Object> observation) {
         DecisionTreeNode branch = getBranch(observation);
-        return branch.makeDecision(observation);
+        if(branch != null)
+            return branch.makeDecision(observation);
+        else
+            return null;
     }
 }

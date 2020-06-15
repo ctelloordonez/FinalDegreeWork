@@ -4,8 +4,8 @@ import carlos.helper.Example;
 
 import java.util.List;
 
-public class DecisionTreeStructure extends DecisionTree {
-    public DecisionTreeStructure(DecisionTreeNode root) {
+public class DecisionTreeBasic extends DecisionTree {
+    public DecisionTreeBasic(DecisionTreeNode root) {
         super(root);
     }
 

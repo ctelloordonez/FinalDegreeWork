@@ -13,5 +13,5 @@ public abstract class DecisionTreeNode {
         examples = new ArrayList<>();
     }
 
-    abstract DecisionTreeNode makeDecision(Hashtable<String, String> observations); // Recursively walkthrough the tree
+    abstract DecisionTreeNode makeDecision(Hashtable<String, Object> observations); // Recursively walkthrough the tree
 }

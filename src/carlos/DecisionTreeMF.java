@@ -2,7 +2,7 @@ package carlos;
 
 import carlos.DecisionTree.Action;
 import carlos.DecisionTree.DecisionTree;
-import carlos.DecisionTree.DecisionTreeStructure;
+import carlos.DecisionTree.DecisionTreeBasic;
 import carlos.DecisionTree.MultiDecision;
 
 import java.util.Hashtable;
@@ -25,9 +25,9 @@ public class DecisionTreeMF {
         decision1.daughterNodes.put("Exposed", action2);
         decision1.daughterNodes.put("In Cover", action3);
 
-        DecisionTree decisionTree = new DecisionTreeStructure(root);
+        DecisionTree decisionTree = new DecisionTreeBasic(root);
 
-        Hashtable<String, String> observation = new Hashtable<>();
+        Hashtable<String, Object> observation = new Hashtable<>();
         observation.put("Ammo", "Empty");
         observation.put("Cover", "In Cover");
         observation.put("Health", "Healthy");
