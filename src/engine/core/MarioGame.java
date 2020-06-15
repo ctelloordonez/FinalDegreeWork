@@ -7,6 +7,7 @@ import java.awt.event.KeyAdapter;
 
 import javax.swing.JFrame;
 
+import agents.carlosTello.Recorder;
 import agents.human.Agent;
 import engine.helper.GameStatus;
 import engine.helper.MarioActions;
@@ -67,7 +68,7 @@ public class MarioGame {
     /**
      * Create a mario game with a different forward model where the player on certain event
      *
-     * @param killPlayer events that will kill the player
+     * @param killEvents events that will kill the player
      */
     public MarioGame(MarioEvent[] killEvents) {
         this.killEvents = killEvents;
@@ -278,6 +279,9 @@ public class MarioGame {
                     break;
                 }
             }
+        }
+        if(this.agent.getAgentName().equals("CarlosTelloRecorder")){
+            ((agents.carlosTello.Recorder)this.agent).SaveObservations();
         }
         return new MarioResult(this.world, gameEvents, agentEvents);
     }
