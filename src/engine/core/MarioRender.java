@@ -100,6 +100,7 @@ public class MarioRender extends JComponent implements FocusListener {
         MarioForwardModel model = new MarioForwardModel(world);
 
         int[][] sceneObservation = model.getMarioSceneObservation(2);
+        int[] marioPosition = model.getMarioScreenTilePos();
 
         for(int i = 0; i < sceneObservation.length; i++){
             for(int j = 0; j< sceneObservation[0].length; j++){
@@ -108,6 +109,7 @@ public class MarioRender extends JComponent implements FocusListener {
                 }
             }
         }
+        drawMario(g2d, debugRect, model.getMarioMode());
     }
     private void drawCube(Graphics g, Rectangle rect, int x, int y){
         int planeWidth = rect.width/16;
@@ -126,7 +128,18 @@ public class MarioRender extends JComponent implements FocusListener {
         g2.setColor(Color.white);
         g2.draw(inner);
         g2.fill(inner);
+    }
+    private void drawMario(Graphics g, Rectangle rect, int mode){
+        int height = mode < 1 ? 1 : 2;
+        int marioHeight = height * (rect.height/16);
+        int marioX = rect.x + rect.width/2 + (rect.width/16)/2;
+        int marioY = rect.y + rect.height/2 + (rect.height/16)/2;
 
+        Graphics2D g2d = (Graphics2D) g;
+
+        g2d.setStroke(new BasicStroke(2));
+        g2d.setColor(Color.RED);
+        g2d.drawLine(marioX, marioY, marioX, marioY-(marioHeight/2));
     }
 
 }
