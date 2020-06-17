@@ -8,6 +8,7 @@ import engine.helper.MarioActions;
 import java.awt.*;
 import java.awt.event.FocusEvent;
 import java.awt.event.FocusListener;
+import java.awt.geom.Rectangle2D;
 
 
 public class MarioRender extends JComponent implements FocusListener {
@@ -47,6 +48,7 @@ public class MarioRender extends JComponent implements FocusListener {
         drawStringDropShadow(og, "Coins: " + world.coins, 11, 0, 7);
         drawStringDropShadow(og, "Time: " + (world.currentTimer == -1 ? "Inf" : (int) Math.ceil(world.currentTimer / 1000f)), 22, 0, 7);
         if (MarioGame.verbose) {
+            debugView(world, og);
             String pressedButtons = "";
             for (int i = 0; i < world.mario.actions.length; i++) {
                 if (world.mario.actions[i]) {
@@ -81,4 +83,50 @@ public class MarioRender extends JComponent implements FocusListener {
     public void focusLost(FocusEvent arg0) {
         focused = false;
     }
+
+    private void debugView(MarioWorld world, Graphics g){
+        Graphics2D g2d = (Graphics2D) g.create();
+        Rectangle debugRect = new Rectangle(256/16, 240/4, 256/4, 256/4);
+
+        g2d.setStroke(new BasicStroke(2));
+        g2d.drawRect(debugRect.x-1, debugRect.y-1, debugRect.width+2, debugRect.height+2);
+        g2d.setPaint(Color.lightGray);
+
+        AlphaComposite alcom = AlphaComposite.getInstance(AlphaComposite.SRC_OVER, 0.8f);
+        g2d.setComposite(alcom);
+
+        g2d.fillRect(debugRect.x, debugRect.y, debugRect.width, debugRect.height);
+
+        MarioForwardModel model = new MarioForwardModel(world);
+
+        int[][] sceneObservation = model.getMarioSceneObservation(2);
+
+        for(int i = 0; i < sceneObservation.length; i++){
+            for(int j = 0; j< sceneObservation[0].length; j++){
+                if(sceneObservation[i][j] != 0){
+                    drawCube(g2d, debugRect, i, j);
+                }
+            }
+        }
+    }
+    private void drawCube(Graphics g, Rectangle rect, int x, int y){
+        int planeWidth = rect.width/16;
+        int planeHeight = rect.height/16;
+        int planeX = rect.x + x * planeWidth;
+        int planeY = rect.y + y * planeHeight;
+
+        Graphics2D g2 = (Graphics2D) g;
+
+        Rectangle2D plane = new Rectangle2D.Double(planeX, planeY, planeWidth, planeHeight);
+        Rectangle2D inner = new Rectangle2D.Double(planeX+1, planeY+1, planeWidth-2, planeHeight-2);
+        g2.setColor(Color.BLACK);
+        g2.draw(plane);
+        g2.fill(plane);
+
+        g2.setColor(Color.white);
+        g2.draw(inner);
+        g2.fill(inner);
+
+    }
+
 }
