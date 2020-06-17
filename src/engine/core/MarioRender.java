@@ -8,8 +8,6 @@ import engine.helper.MarioActions;
 import java.awt.*;
 import java.awt.event.FocusEvent;
 import java.awt.event.FocusListener;
-import java.awt.geom.Rectangle2D;
-
 
 public class MarioRender extends JComponent implements FocusListener {
     private static final long serialVersionUID = 790878775993203817L;
@@ -100,34 +98,48 @@ public class MarioRender extends JComponent implements FocusListener {
         MarioForwardModel model = new MarioForwardModel(world);
 
         int[][] sceneObservation = model.getMarioSceneObservation(2);
-        int[] marioPosition = model.getMarioScreenTilePos();
+        int[][] enemiesObservation = model.getMarioEnemiesObservation(2);
 
-        for(int i = 0; i < sceneObservation.length; i++){
-            for(int j = 0; j< sceneObservation[0].length; j++){
-                if(sceneObservation[i][j] != 0){
-                    drawCube(g2d, debugRect, i, j);
+//        for(int i = 0; i < sceneObservation.length; i++){
+//            for(int j = 0; j< sceneObservation[0].length; j++){
+//                if(sceneObservation[i][j] != 0){
+//                    drawCube(g2d, debugRect, i, j, Color.WHITE);
+//                }
+//                if(enemiesObservation[i][j] != 0){
+//                    drawCube(g2d, debugRect, i, j, Color.BLACK);
+//                }
+//            }
+//        }
+        int[][] sceneVision = carlos.Utils.ArrayUtils.getSubmatrix(sceneObservation,6,5,13,11);
+        int[][] enemiesVision = carlos.Utils.ArrayUtils.getSubmatrix(enemiesObservation,6,5,13,11);
+
+        for(int i = 0; i < sceneVision.length; i++){
+            for(int j = 0; j< sceneVision[0].length; j++){
+                if(sceneVision[i][j] != 0){
+                    drawCube(g2d, debugRect, i + 6, j + 5, Color.WHITE);
+                }
+                if(enemiesVision[i][j] != 0){
+                    drawCube(g2d, debugRect, i + 6, j + 5, Color.BLACK);
                 }
             }
         }
+
         drawMario(g2d, debugRect, model.getMarioMode());
     }
-    private void drawCube(Graphics g, Rectangle rect, int x, int y){
+
+
+    private void drawCube(Graphics g, Rectangle rect, int x, int y,  Color innerColor){
         int planeWidth = rect.width/16;
         int planeHeight = rect.height/16;
         int planeX = rect.x + x * planeWidth;
         int planeY = rect.y + y * planeHeight;
 
         Graphics2D g2 = (Graphics2D) g;
-
-        Rectangle2D plane = new Rectangle2D.Double(planeX, planeY, planeWidth, planeHeight);
-        Rectangle2D inner = new Rectangle2D.Double(planeX+1, planeY+1, planeWidth-2, planeHeight-2);
         g2.setColor(Color.BLACK);
-        g2.draw(plane);
-        g2.fill(plane);
+        g2.drawRect(planeX, planeY, planeWidth, planeHeight);
 
-        g2.setColor(Color.white);
-        g2.draw(inner);
-        g2.fill(inner);
+        g2.setColor(innerColor);
+        g2.fillRect(planeX + 1, planeY + 1, planeWidth - 2, planeHeight - 2);
     }
     private void drawMario(Graphics g, Rectangle rect, int mode){
         int height = mode < 1 ? 1 : 2;
