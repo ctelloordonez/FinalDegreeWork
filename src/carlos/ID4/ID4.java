@@ -7,6 +7,7 @@ import carlos.DecisionTree.MultiDecision;
 import carlos.helper.Example;
 
 import java.util.ArrayList;
+import java.util.Hashtable;
 import java.util.List;
 
 import static carlos.Utils.InductionOfDecisionTrees.*;
@@ -18,7 +19,7 @@ public class ID4 extends DecisionTree {
     }
 
     @Override
-    protected void makeTree(List<Example> examples, List<String> attributes, DecisionTreeNode decisionNode) {
+    protected DecisionTreeNode makeTree(List<Example> examples, List<String> attributes, DecisionTreeNode decisionNode) {
         System.out.println("\n\nMAKE TREE");
         System.out.println("=========");
         System.out.println("Examples:");
@@ -37,7 +38,7 @@ public class ID4 extends DecisionTree {
 
         // If there is no entropy, can't go further
         if(initialEntropy <= 0){
-            return;
+            return decisionNode;
         }
 
         // Get the number of examples
@@ -70,9 +71,23 @@ public class ID4 extends DecisionTree {
             }
         }
 
-        // Set the decision node's test
-        ((MultiDecision) decisionNode).testValue = bestSplitAttribute;
-
+        if(bestSplitAttribute != null) {
+            // Set the decision node's test
+            ((MultiDecision) decisionNode).testValue = bestSplitAttribute;
+        }
+        else {
+            Hashtable<Object, Integer> actionTallies = actionTallies(examples);
+            Object bestAction = examples.get(0).action;  // initialize bestAction to first example on the set.
+            int bestTally = 0;
+            for(Object action : actionTallies.keySet()){
+                if(actionTallies.get(action) > bestTally){
+                    bestTally = actionTallies.get(action);
+                    bestAction = action;
+                }
+            }
+            decisionNode = new Action(bestAction);
+            return decisionNode;
+        }
         // Remove this best attribute from the list passed to the next iteration
         List<String> newAttributes = new ArrayList<>(attributes);
         newAttributes.remove(bestSplitAttribute);
@@ -90,13 +105,14 @@ public class ID4 extends DecisionTree {
             else{
                 daughter = new MultiDecision();
             }
+            // Recurse the algorithm
+            daughter = makeTree(set, newAttributes,daughter);
 
             // Add it to the tree
             ((MultiDecision) decisionNode).daughterNodes.put(attributeValue, daughter);
 
-            // Recurse the algorithm
-            makeTree(set, newAttributes,daughter);
         }
+        return decisionNode;
     }
 
     public void IncrementTree(Example example){

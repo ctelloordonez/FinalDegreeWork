@@ -17,9 +17,15 @@ public abstract class DecisionTree {
     }
 
     public void MakeTree(List<Example> examples, List<String> attributes){
-        makeTree(examples, attributes, root);
+        root = makeTree(examples, attributes, root);
     }
 
-    protected abstract void makeTree(List<Example> examples, List<String> attributes, DecisionTreeNode decisionNode);
+    public void PrintTree(){
+        System.out.println("+root:");
+        root.printNode(1);
+        System.out.println();
+    }
+
+    protected abstract DecisionTreeNode makeTree(List<Example> examples, List<String> attributes, DecisionTreeNode decisionNode);
 }
 

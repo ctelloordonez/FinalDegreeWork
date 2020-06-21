@@ -29,6 +29,8 @@ public class MakeID3 {
 
         DecisionTree dt = new ID3(root);
         dt.MakeTree(examplesList, attributesList);
+        System.out.println();
+        dt.PrintTree();
 
         String json = gson.toJson(dt);
 

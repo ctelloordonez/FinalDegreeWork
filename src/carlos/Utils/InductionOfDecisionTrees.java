@@ -134,12 +134,7 @@ public class InductionOfDecisionTrees {
 
         if(exampleCount == 0) return 0;
 
-        Hashtable<Object, Integer> actionTallies = new Hashtable<>();
-
-        for(Example example : examples){
-            int tally = actionTallies.get(example.action) != null ? actionTallies.get(example.action) + 1 : 1;
-            actionTallies.put(example.action, tally);
-        }
+        Hashtable<Object, Integer> actionTallies = actionTallies(examples);
 
         int actionsCount = actionTallies.size();
 
@@ -182,5 +177,16 @@ public class InductionOfDecisionTrees {
      */
     private static double log(float x, int actionsCount){
         return Math.log(x) / Math.log(actionsCount);
+    }
+
+    public static Hashtable<Object, Integer> actionTallies(List<Example> examples){
+        Hashtable<Object, Integer> actionTallies = new Hashtable<>();
+
+        for(Example example : examples){
+            int tally = actionTallies.get(example.action) != null ? actionTallies.get(example.action) + 1 : 1;
+            actionTallies.put(example.action, tally);
+        }
+
+        return actionTallies;
     }
 }

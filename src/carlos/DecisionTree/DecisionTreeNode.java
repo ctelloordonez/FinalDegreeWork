@@ -14,4 +14,6 @@ public abstract class DecisionTreeNode {
     }
 
     abstract DecisionTreeNode makeDecision(Hashtable<String, Object> observations); // Recursively walkthrough the tree
+
+    abstract void printNode(int tab);
 }

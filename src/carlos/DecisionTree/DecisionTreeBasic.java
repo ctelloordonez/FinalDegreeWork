@@ -10,7 +10,7 @@ public class DecisionTreeBasic extends DecisionTree {
     }
 
     @Override
-    protected void makeTree(List<Example> examples, List<String> attributes, DecisionTreeNode decisionNode) {
-
+    protected DecisionTreeNode makeTree(List<Example> examples, List<String> attributes, DecisionTreeNode decisionNode) {
+        return decisionNode;
     }
 }

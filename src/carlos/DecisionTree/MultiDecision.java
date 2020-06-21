@@ -24,4 +24,16 @@ public class MultiDecision extends DecisionTreeNode {
         else
             return null;
     }
+
+    @Override
+    void printNode(int level) {
+        String tabs = "";
+        for(int i = 0; i < level; i++){ tabs+= "  "; }
+        System.out.println(tabs + "-test value: " + testValue);
+        System.out.println(tabs + "+daughter nodes:");
+        for(Object key : daughterNodes.keySet()){
+            System.out.println(tabs + "  +" + key.toString() + ":");
+            daughterNodes.get(key).printNode(level+2);
+        }
+    }
 }
