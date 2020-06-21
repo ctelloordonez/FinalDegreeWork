@@ -9,7 +9,6 @@ import java.awt.*;
 import java.awt.event.FocusEvent;
 import java.awt.event.FocusListener;
 
-
 public class MarioRender extends JComponent implements FocusListener {
     private static final long serialVersionUID = 790878775993203817L;
     public static final int TICKS_PER_SECOND = 24;
@@ -47,6 +46,7 @@ public class MarioRender extends JComponent implements FocusListener {
         drawStringDropShadow(og, "Coins: " + world.coins, 11, 0, 7);
         drawStringDropShadow(og, "Time: " + (world.currentTimer == -1 ? "Inf" : (int) Math.ceil(world.currentTimer / 1000f)), 22, 0, 7);
         if (MarioGame.verbose) {
+            debugView(world, og);
             String pressedButtons = "";
             for (int i = 0; i < world.mario.actions.length; i++) {
                 if (world.mario.actions[i]) {
@@ -81,4 +81,77 @@ public class MarioRender extends JComponent implements FocusListener {
     public void focusLost(FocusEvent arg0) {
         focused = false;
     }
+
+    private void debugView(MarioWorld world, Graphics g){
+        Graphics2D g2d = (Graphics2D) g.create();
+        Rectangle debugRect = new Rectangle(256/16, 240/4, 256/4, 256/4);
+
+        g2d.setStroke(new BasicStroke(2));
+        g2d.drawRect(debugRect.x-1, debugRect.y-1, debugRect.width+2, debugRect.height+2);
+        g2d.setPaint(Color.lightGray);
+
+        AlphaComposite alcom = AlphaComposite.getInstance(AlphaComposite.SRC_OVER, 0.8f);
+        g2d.setComposite(alcom);
+
+        g2d.fillRect(debugRect.x, debugRect.y, debugRect.width, debugRect.height);
+
+        MarioForwardModel model = new MarioForwardModel(world);
+
+        int[][] sceneObservation = model.getMarioSceneObservation(2);
+        int[][] enemiesObservation = model.getMarioEnemiesObservation(2);
+
+//        for(int i = 0; i < sceneObservation.length; i++){
+//            for(int j = 0; j< sceneObservation[0].length; j++){
+//                if(sceneObservation[i][j] != 0){
+//                    drawCube(g2d, debugRect, i, j, Color.WHITE);
+//                }
+//                if(enemiesObservation[i][j] != 0){
+//                    drawCube(g2d, debugRect, i, j, Color.BLACK);
+//                }
+//            }
+//        }
+        int[][] sceneVision = carlos.Utils.ArrayUtils.getSubmatrix(sceneObservation,6,5,13,11);
+        int[][] enemiesVision = carlos.Utils.ArrayUtils.getSubmatrix(enemiesObservation,6,5,13,11);
+
+        for(int i = 0; i < sceneVision.length; i++){
+            for(int j = 0; j< sceneVision[0].length; j++){
+                if(sceneVision[i][j] != 0){
+                    drawCube(g2d, debugRect, i + 6, j + 5, Color.WHITE);
+                }
+                if(enemiesVision[i][j] != 0){
+                    drawCube(g2d, debugRect, i + 6, j + 5, Color.BLACK);
+                }
+            }
+        }
+
+        drawMario(g2d, debugRect, model.getMarioMode());
+    }
+
+
+    private void drawCube(Graphics g, Rectangle rect, int x, int y,  Color innerColor){
+        int planeWidth = rect.width/16;
+        int planeHeight = rect.height/16;
+        int planeX = rect.x + x * planeWidth;
+        int planeY = rect.y + y * planeHeight;
+
+        Graphics2D g2 = (Graphics2D) g;
+        g2.setColor(Color.BLACK);
+        g2.drawRect(planeX, planeY, planeWidth, planeHeight);
+
+        g2.setColor(innerColor);
+        g2.fillRect(planeX + 1, planeY + 1, planeWidth - 2, planeHeight - 2);
+    }
+    private void drawMario(Graphics g, Rectangle rect, int mode){
+        int height = mode < 1 ? 1 : 2;
+        int marioHeight = height * (rect.height/16);
+        int marioX = rect.x + rect.width/2 + (rect.width/16)/2;
+        int marioY = rect.y + rect.height/2 + (rect.height/16)/2;
+
+        Graphics2D g2d = (Graphics2D) g;
+
+        g2d.setStroke(new BasicStroke(2));
+        g2d.setColor(Color.RED);
+        g2d.drawLine(marioX, marioY, marioX, marioY-(marioHeight/2));
+    }
+
 }
