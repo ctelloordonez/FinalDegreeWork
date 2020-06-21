@@ -1,5 +1,7 @@
 package carlos.Utils;
 
+import java.util.ArrayList;
+
 public class ArrayUtils {
 
     public static int[][] getSubmatrix(int[][] matrix, int minX, int minY, int maxX, int maxY){
@@ -10,5 +12,32 @@ public class ArrayUtils {
             }
         }
         return submatrix;
+    }
+
+    public static ArrayList<ArrayList<Double>> matrixToArrayList(int[][] array){
+        ArrayList<ArrayList<Double>> arrayLists = new ArrayList<>();
+        for(int i = 0; i < array.length; i++){
+            ArrayList<Double> aux = new ArrayList<>();
+            for(int j = 0; j < array[0].length; j++){
+                aux.add(j, (double) array[i][j]);
+            }
+            arrayLists.add(i, aux);
+        }
+        return arrayLists;
+    }
+
+    public static ArrayList<Double> arrayToArrayList(int[] array){
+        ArrayList<Double> arrayList = new ArrayList<>();
+        for(int i = 0; i < array.length; i++){
+            arrayList.add(i, (double) array[i]);
+        }
+        return arrayList;
+    }
+    public static ArrayList<Double> arrayToArrayList(float[] array){
+        ArrayList<Double> arrayList = new ArrayList<>();
+        for(int i = 0; i < array.length; i++){
+            arrayList.add(i, (double) array[i]);
+        }
+        return arrayList;
     }
 }
