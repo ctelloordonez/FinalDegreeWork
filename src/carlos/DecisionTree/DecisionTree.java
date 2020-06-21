@@ -20,6 +20,12 @@ public abstract class DecisionTree {
         makeTree(examples, attributes, root);
     }
 
+    public void PrintTree(){
+        System.out.println("+root:");
+        root.printNode(1);
+        System.out.println();
+    }
+
     protected abstract void makeTree(List<Example> examples, List<String> attributes, DecisionTreeNode decisionNode);
 }
 

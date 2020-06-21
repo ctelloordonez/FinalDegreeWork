@@ -18,4 +18,11 @@ public class Action extends DecisionTreeNode {
     public DecisionTreeNode makeDecision(Hashtable<String, Object> observations) {
         return this;
     }
+
+    @Override
+    void printNode(int level) {
+        String tabs = "";
+        for(int i = 0; i <= level; i++){ tabs+= "  "; }
+        System.out.println(tabs +"-action: " + action.toString());
+    }
 }
