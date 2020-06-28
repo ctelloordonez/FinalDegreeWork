@@ -127,7 +127,6 @@ public class MarioRender extends JComponent implements FocusListener {
         drawMario(g2d, debugRect, model.getMarioMode());
     }
 
-
     private void drawCube(Graphics g, Rectangle rect, int x, int y,  Color innerColor){
         int planeWidth = rect.width/16;
         int planeHeight = rect.height/16;
@@ -141,6 +140,18 @@ public class MarioRender extends JComponent implements FocusListener {
         g2.setColor(innerColor);
         g2.fillRect(planeX + 1, planeY + 1, planeWidth - 2, planeHeight - 2);
     }
+
+    private void drawBox(Graphics g, Rectangle rect, int x, int y, int width, int height, Color borderColor){
+        int planeWidth = width * (rect.width/16);
+        int planeHeight = height * (rect.height/16);
+        int planeX = rect.x + x * (rect.width/16);
+        int planeY = rect.y + y * (rect.height/16);
+
+        Graphics2D g2 = (Graphics2D)g;
+        g2.setColor(borderColor);
+        g2.drawRect(planeX, planeY, planeWidth, planeHeight);
+    }
+
     private void drawMario(Graphics g, Rectangle rect, int mode){
         int height = mode < 1 ? 1 : 2;
         int marioHeight = height * (rect.height/16);
