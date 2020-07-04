@@ -1,6 +1,7 @@
 package agents.carlosTello;
 
 import carlos.DataManager.FileManager;
+import carlos.Utils.ArrayUtils;
 import carlos.helper.Dataset;
 import carlos.helper.Example;
 import com.google.gson.Gson;
@@ -15,14 +16,16 @@ import java.util.*;
 public class Recorder implements MarioAgent {
     private boolean[] action;
     private MarioAgent recordedAgent;
+    private String datasetFilename;
 
     private Dataset dataset;
     private ArrayList<Example> exampleList;
 
     private int ticksToSave = 0;
 
-    public Recorder(MarioAgent recordedAgent){
+    public Recorder(MarioAgent recordedAgent, String datasetFilename){
         this.recordedAgent = recordedAgent;
+        this.datasetFilename = datasetFilename;
     }
 
     @Override
@@ -53,16 +56,35 @@ public class Recorder implements MarioAgent {
         String[] attributes = exampleList.get(0).allAttributes().toArray(new String[examples[0].allAttributes().size()]);
         dataset = new Dataset(examples, attributes);
 
-        Date date = new Date();
-        SimpleDateFormat formatter = new SimpleDateFormat("MMddhhmmss");
+//        Date date = new Date();
+//        SimpleDateFormat formatter = new SimpleDateFormat("MMddhhmmss");
 //        String datasetFilename = formatter.format(date);
-        String datasetFilename = "RecordedMarioDataset";
+//        String datasetFilename = "RecordedMarioDatasetGenerate";
 
         Gson gson = new Gson();
-        String json = gson.toJson(dataset);
 
+        String prevDataset = FileManager.ReadFile(datasetFilename + ".JSON");
+        if(prevDataset != ""){
+            Dataset previousDataset = gson.fromJson(prevDataset, Dataset.class);
+
+            Example[] aux = new Example[previousDataset.examples.length + dataset.examples.length];
+            int i = 0;
+            for(int j = 0; j < examples.length; j++){
+                aux[i] = dataset.examples[j];
+                i++;
+            }
+            for(int k= 0; k < previousDataset.examples.length; k++){
+                aux[i] = previousDataset.examples[k];
+                i++;
+            }
+            dataset.examples = aux;
+//            dataset.addData(previousDataset);
+        }
+
+        String json = gson.toJson(dataset);
         FileManager.CreateFile(datasetFilename + ".JSON");
         FileManager.WriteToFile(datasetFilename + ".JSON", json);
+        System.out.println(dataset.examples.length);
     }
 
     private Hashtable<String, Object> getObservation(MarioForwardModel model){
@@ -71,10 +93,22 @@ public class Recorder implements MarioAgent {
         attributes.put("MarioMode", model.getMarioMode());
         attributes.put("OnGround", model.isMarioOnGround());
         attributes.put("MayJump", model.mayMarioJump());
-        attributes.put("EnemiesObservation", model.getMarioEnemiesObservation(0));
-        attributes.put("SceneObservation", model.getMarioSceneObservation(0));
+        attributes.put("EnemiesObservation",
+                ArrayUtils.matrixToArrayList(ArrayUtils.getSubmatrix(model.getMarioEnemiesObservation(2),
+                        6,5,16,11)));
+        attributes.put("GroundObservation",
+                ArrayUtils.matrixToArrayList(ArrayUtils.getSubmatrix(model.getMarioSceneObservation(2),
+                        8,9,16,10)));
+        attributes.put("ForwardObservation",
+                ArrayUtils.matrixToArrayList(ArrayUtils.getSubmatrix(model.getMarioSceneObservation(2),
+                        8,6,16,9)));
+        attributes.put("TopObservation",
+                ArrayUtils.matrixToArrayList(ArrayUtils.getSubmatrix(model.getMarioSceneObservation(2),
+                        8,5,11,11)));
+//        attributes.put("EnemiesObservation", model.getMarioEnemiesObservation(0));
+//        attributes.put("SceneObservation", model.getMarioSceneObservation(0));
 //        attributes.put("EnemiesPositions", model.getEnemiesFloatPos());
-        attributes.put("MarioPosition", model.getMarioScreenTilePos());
+//        attributes.put("MarioPosition", ArrayUtils.arrayToArrayList(model.getMarioScreenTilePos()));
         attributes.put("CanJumpHigher", model.getMarioCanJumpHigher());
 
         return attributes;

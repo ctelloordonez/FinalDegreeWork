@@ -40,7 +40,7 @@ public class MarioGame {
     /**
      * print debug details
      */
-    public static final boolean verbose = false;
+    public static final boolean verbose = true;
 
     /**
      * pauses the whole game at any moment

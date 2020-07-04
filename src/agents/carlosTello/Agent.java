@@ -6,6 +6,7 @@ import carlos.DecisionTree.DecisionTree;
 import carlos.DecisionTree.DecisionTreeNode;
 import carlos.DecisionTree.MultiDecision;
 import carlos.ID3.ID3;
+import carlos.Utils.ArrayUtils;
 import carlos.helper.Dataset;
 import carlos.helper.Example;
 import com.google.gson.Gson;
@@ -36,6 +37,7 @@ public class Agent implements MarioAgent {
 
         DecisionTree dt = new ID3(root);
         dt.MakeTree(examplesList, attributesList);
+        dt.PrintTree();
 
         this.decisionTree = dt;
     }
@@ -43,7 +45,8 @@ public class Agent implements MarioAgent {
     @Override
     public boolean[] getActions(MarioForwardModel model, MarioTimer timer) {
         DecisionTreeNode node = decisionTree.makeDecision(getObservation(model));
-        if(node != null && node instanceof Action){
+//        if(node != null && node instanceof Action){
+        if(node instanceof Action){
             ArrayList<Boolean> actionList = (ArrayList<Boolean>) ((Action) node).action;
             int index = 0;
             for(Object button : actionList){
@@ -73,10 +76,22 @@ public class Agent implements MarioAgent {
         attributes.put("MarioMode", model.getMarioMode());
         attributes.put("OnGround", model.isMarioOnGround());
         attributes.put("MayJump", model.mayMarioJump());
-        attributes.put("EnemiesObservation", matrixToArrayList(model.getMarioEnemiesObservation(0)));
-        attributes.put("EnemiesPositions", model.getEnemiesFloatPos());
-        attributes.put("SceneObservation", matrixToArrayList(model.getMarioSceneObservation(0)));
-        attributes.put("MarioPosition", arrayToArrayList(model.getMarioScreenTilePos()));
+//        attributes.put("EnemiesObservation", matrixToArrayList(model.getMarioEnemiesObservation(0)));
+//        attributes.put("EnemiesPositions", model.getEnemiesFloatPos());
+//        attributes.put("SceneObservation", matrixToArrayList(model.getMarioSceneObservation(0)));
+        attributes.put("EnemiesObservation",
+                ArrayUtils.matrixToArrayList(ArrayUtils.getSubmatrix(model.getMarioEnemiesObservation(2),
+                        6,5,16,11)));
+        attributes.put("GroundObservation",
+                ArrayUtils.matrixToArrayList(ArrayUtils.getSubmatrix(model.getMarioSceneObservation(2),
+                        8,9,16,10)));
+        attributes.put("ForwardObservation",
+                ArrayUtils.matrixToArrayList(ArrayUtils.getSubmatrix(model.getMarioSceneObservation(2),
+                        8,6,16,9)));
+        attributes.put("TopObservation",
+                ArrayUtils.matrixToArrayList(ArrayUtils.getSubmatrix(model.getMarioSceneObservation(2),
+                        8,5,11,11)));
+        attributes.put("MarioPosition", ArrayUtils.arrayToArrayList(model.getMarioScreenTilePos()));
         attributes.put("CanJumpHigher", model.getMarioCanJumpHigher());
         return attributes;
     }

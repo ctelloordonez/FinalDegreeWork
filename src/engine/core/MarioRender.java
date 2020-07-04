@@ -87,6 +87,7 @@ public class MarioRender extends JComponent implements FocusListener {
         Rectangle debugRect = new Rectangle(256/16, 240/4, 256/4, 256/4);
 
         g2d.setStroke(new BasicStroke(2));
+        g2d.setColor(Color.BLACK);
         g2d.drawRect(debugRect.x-1, debugRect.y-1, debugRect.width+2, debugRect.height+2);
         g2d.setPaint(Color.lightGray);
 
@@ -110,20 +111,23 @@ public class MarioRender extends JComponent implements FocusListener {
 //                }
 //            }
 //        }
-        int[][] sceneVision = carlos.Utils.ArrayUtils.getSubmatrix(sceneObservation,6,5,13,11);
-        int[][] enemiesVision = carlos.Utils.ArrayUtils.getSubmatrix(enemiesObservation,6,5,13,11);
+        int[][] sceneVision = carlos.Utils.ArrayUtils.getSubmatrix(sceneObservation,8,5,16,10);
+        int[][] enemiesVision = carlos.Utils.ArrayUtils.getSubmatrix(enemiesObservation,8,5,16,10);
 
         for(int i = 0; i < sceneVision.length; i++){
             for(int j = 0; j< sceneVision[0].length; j++){
                 if(sceneVision[i][j] != 0){
-                    drawCube(g2d, debugRect, i + 6, j + 5, Color.WHITE);
+                    drawCube(g2d, debugRect, i + 8, j + 5, Color.WHITE);
                 }
                 if(enemiesVision[i][j] != 0){
-                    drawCube(g2d, debugRect, i + 6, j + 5, Color.BLACK);
+                    drawCube(g2d, debugRect, i + 8, j + 5, Color.BLACK);
                 }
             }
         }
 
+        drawBox(g, debugRect, 8, 5, 8, 1, Color.CYAN);
+        drawBox(g, debugRect, 8, 6, 8, 3, Color.ORANGE);
+        drawBox(g, debugRect, 8, 9, 8, 1, Color.MAGENTA);
         drawMario(g2d, debugRect, model.getMarioMode());
     }
 
