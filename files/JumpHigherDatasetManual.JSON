@@ -1,0 +1,7 @@
+{
+"examples":[
+  {"action":[false,false,false,false,true],"attributes":{"MayJump":true,"OnGround": true,"CanJumpHigher": false}},
+  {"action":[false,false,false,false,true],"attributes":{"MayJump":false,"OnGround": false,"CanJumpHigher": true}},
+  {"action":[false,false,false,false,false],"attributes":{"MayJump":false,"OnGround": false,"CanJumpHigher": false}}],
+  "attributes":["MayJump","OnGround","CanJumpHigher"]
+}

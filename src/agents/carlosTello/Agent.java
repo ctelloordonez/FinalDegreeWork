@@ -73,25 +73,8 @@ public class Agent implements MarioAgent {
     private Hashtable<String, Object> getObservation(MarioForwardModel model){
         Hashtable<String, Object> attributes = new Hashtable<>();
 
-        attributes.put("MarioMode", model.getMarioMode());
         attributes.put("OnGround", model.isMarioOnGround());
         attributes.put("MayJump", model.mayMarioJump());
-//        attributes.put("EnemiesObservation", matrixToArrayList(model.getMarioEnemiesObservation(0)));
-//        attributes.put("EnemiesPositions", model.getEnemiesFloatPos());
-//        attributes.put("SceneObservation", matrixToArrayList(model.getMarioSceneObservation(0)));
-        attributes.put("EnemiesObservation",
-                ArrayUtils.matrixToArrayList(ArrayUtils.getSubmatrix(model.getMarioEnemiesObservation(2),
-                        6,5,16,11)));
-        attributes.put("GroundObservation",
-                ArrayUtils.matrixToArrayList(ArrayUtils.getSubmatrix(model.getMarioSceneObservation(2),
-                        8,9,16,10)));
-        attributes.put("ForwardObservation",
-                ArrayUtils.matrixToArrayList(ArrayUtils.getSubmatrix(model.getMarioSceneObservation(2),
-                        8,6,16,9)));
-        attributes.put("TopObservation",
-                ArrayUtils.matrixToArrayList(ArrayUtils.getSubmatrix(model.getMarioSceneObservation(2),
-                        8,5,11,11)));
-        attributes.put("MarioPosition", ArrayUtils.arrayToArrayList(model.getMarioScreenTilePos()));
         attributes.put("CanJumpHigher", model.getMarioCanJumpHigher());
         return attributes;
     }

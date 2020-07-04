@@ -33,8 +33,8 @@ public class PlayLevel {
 
     public static void main(String[] args) {
         MarioGame game = new MarioGame();
-        // printResults(game.playGame(getLevel("../levels/original/lvl-1.txt"), 200, 0));
-//        printResults(game.runGame(new agents.carlosTello.Recorder(new agents.robinBaumgarten.Agent()), getLevel("./levels/original/lvl-1.txt"), 20, 0, true));
-        printResults(game.runGame(new agents.carlosTello.Agent("RecordedMarioDataset"), getLevel("./levels/original/lvl-1.txt"), 20, 0, true));
+
+//        printResults(game.runGame(new agents.carlosTello.Agent("JumpDatasetManual"), getLevel("./levels/carlosTello/jumpLevel.txt"), 20, 0, true));
+        printResults(game.runGame(new agents.carlosTello.Agent("JumpHigherDatasetManual"), getLevel("./levels/carlosTello/jumpLevel.txt"), 20, 0, true));
     }
 }
