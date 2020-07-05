@@ -1,0 +1,17 @@
+{
+"examples":[
+  {"action":[false,true,false,false,true],"attributes":{"MayJump":true,"CanJumpHigher": false, "SmallMarioObservation": [[0.0,0.0,0.0,0.0],[0.0,0.0,0.0,0.0],[0.0,0.0,0.0,0.0],[0.0,0.0,0.0,1.0]],"SmallGroundMarioObservation": [[1.0],[1.0],[1.0],[1.0]]}},
+  {"action":[false,true,false,false,false],"attributes":{"MayJump":false,"CanJumpHigher": false, "SmallMarioObservation": [[0.0,0.0,0.0,0.0],[0.0,0.0,0.0,0.0],[0.0,0.0,0.0,0.0],[0.0,0.0,0.0,1.0]],"SmallGroundMarioObservation": [[1.0],[1.0],[1.0],[1.0]]}},
+  {"action":[false,true,false,false,true],"attributes":{"MayJump":true,"CanJumpHigher": false, "SmallMarioObservation": [[0.0,0.0,0.0,0.0],[0.0,0.0,0.0,0.0],[0.0,0.0,0.0,1.0],[0.0,0.0,0.0,0.0]],"SmallGroundMarioObservation": [[1.0],[1.0],[1.0],[1.0]]}},
+  {"action":[false,true,false,false,false],"attributes":{"MayJump":false,"CanJumpHigher": false, "SmallMarioObservation": [[0.0,0.0,0.0,0.0],[0.0,0.0,0.0,0.0],[0.0,0.0,0.0,1.0],[0.0,0.0,0.0,0.0]],"SmallGroundMarioObservation": [[1.0],[1.0],[1.0],[1.0]]}},
+  {"action":[false,true,false,false,true],"attributes":{"MayJump":true,"CanJumpHigher": false, "SmallMarioObservation": [[0.0,0.0,0.0,0.0],[0.0,0.0,0.0,1.0],[0.0,0.0,0.0,0.0],[0.0,0.0,0.0,0.0]],"SmallGroundMarioObservation": [[1.0],[1.0],[1.0],[1.0]]}},
+  {"action":[false,true,false,false,false],"attributes":{"MayJump":false,"CanJumpHigher": false, "SmallMarioObservation": [[0.0,0.0,0.0,0.0],[0.0,0.0,0.0,1.0],[0.0,0.0,0.0,0.0],[0.0,0.0,0.0,0.0]],"SmallGroundMarioObservation": [[1.0],[1.0],[1.0],[1.0]]}},
+  {"action":[false,true,false,false,true],"attributes":{"MayJump":true,"CanJumpHigher": false, "SmallMarioObservation": [[0.0,0.0,0.0,1.0],[0.0,0.0,0.0,0.0],[0.0,0.0,0.0,0.0],[0.0,0.0,0.0,0.0]],"SmallGroundMarioObservation": [[1.0],[1.0],[1.0],[1.0]]}},
+  {"action":[false,true,false,false,false],"attributes":{"MayJump":false,"CanJumpHigher": false, "SmallMarioObservation": [[0.0,0.0,0.0,1.0],[0.0,0.0,0.0,0.0],[0.0,0.0,0.0,0.0],[0.0,0.0,0.0,0.0]],"SmallGroundMarioObservation": [[1.0],[1.0],[1.0],[1.0]]}},
+  {"action":[false,true,false,false,false],"attributes":{"MayJump":true,"CanJumpHigher": false, "SmallMarioObservation": [[0.0,0.0,0.0,0.0],[0.0,0.0,0.0,0.0],[0.0,0.0,0.0,0.0],[0.0,0.0,0.0,0.0]],"SmallGroundMarioObservation": [[1.0],[1.0],[1.0],[1.0]]}},
+  {"action":[false,true,false,false,true],"attributes":{"MayJump":false,"CanJumpHigher": true, "SmallMarioObservation": [[0.0,0.0,0.0,0.0],[0.0,0.0,0.0,0.0],[0.0,0.0,0.0,0.0],[0.0,0.0,0.0,0.0]],"SmallGroundMarioObservation": [[0.0],[0.0],[0.0],[0.0]]}},
+  {"action":[false,true,false,false,true],"attributes":{"MayJump":true,"CanJumpHigher": false, "SmallMarioObservation": [[0.0,0.0,0.0,0.0],[0.0,0.0,0.0,0.0],[0.0,0.0,0.0,0.0],[0.0,0.0,0.0,0.0]],"SmallGroundMarioObservation": [[1.0],[1.0],[0.0],[0.0]]}},
+  {"action":[false,true,false,false,false],"attributes":{"MayJump":false,"CanJumpHigher": false, "SmallMarioObservation": [[0.0,0.0,0.0,0.0],[0.0,0.0,0.0,0.0],[0.0,0.0,0.0,0.0],[0.0,0.0,0.0,0.0]],"SmallGroundMarioObservation": [[0.0],[0.0],[0.0],[0.0]]}},
+  {"action":[false,true,false,false,false],"attributes":{"MayJump":false,"CanJumpHigher": false, "SmallMarioObservation": [[0.0,0.0,0.0,0.0],[0.0,0.0,0.0,0.0],[0.0,0.0,0.0,0.0],[0.0,0.0,0.0,0.0]],"SmallGroundMarioObservation": [[1.0],[1.0],[1.0],[1.0]]}}],
+  "attributes":["MayJump","CanJumpHigher", "SmallMarioObservation","SmallGroundMarioObservation"]
+}
