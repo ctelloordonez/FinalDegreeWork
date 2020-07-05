@@ -44,9 +44,9 @@ public class Agent implements MarioAgent {
 
     @Override
     public boolean[] getActions(MarioForwardModel model, MarioTimer timer) {
-        DecisionTreeNode node = decisionTree.makeDecision(getObservation(model));
-//        if(node != null && node instanceof Action){
-        if(node instanceof Action){
+        Hashtable<String,Object> attributes = getObservation(model);
+        DecisionTreeNode node = decisionTree.makeDecision(attributes);
+        if(node != null && node instanceof Action){
             ArrayList<Boolean> actionList = (ArrayList<Boolean>) ((Action) node).action;
             int index = 0;
             for(Object button : actionList){
@@ -76,6 +76,8 @@ public class Agent implements MarioAgent {
         attributes.put("OnGround", model.isMarioOnGround());
         attributes.put("MayJump", model.mayMarioJump());
         attributes.put("CanJumpHigher", model.getMarioCanJumpHigher());
+        attributes.put("SmallMarioObservation", ArrayUtils.matrixToArrayList(ArrayUtils.getSubmatrix(model.getMarioSceneObservation(2),
+                9,5,13,9)));
         return attributes;
     }
 

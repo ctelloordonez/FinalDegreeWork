@@ -1,0 +1,15 @@
+{
+"examples":[
+  {"action":[false,true,false,false,true],"attributes":{"MayJump":true,"CanJumpHigher": false, "SmallMarioObservation": [[0.0,0.0,0.0,0.0],[0.0,0.0,0.0,0.0],[0.0,0.0,0.0,0.0],[0.0,0.0,0.0,100.0]]}},
+  {"action":[false,true,false,false,false],"attributes":{"MayJump":false,"CanJumpHigher": false, "SmallMarioObservation": [[0.0,0.0,0.0,0.0],[0.0,0.0,0.0,0.0],[0.0,0.0,0.0,0.0],[0.0,0.0,0.0,100.0]]}},
+  {"action":[false,true,false,false,true],"attributes":{"MayJump":true,"CanJumpHigher": false, "SmallMarioObservation": [[0.0,0.0,0.0,0.0],[0.0,0.0,0.0,0.0],[0.0,0.0,0.0,100.0],[0.0,0.0,0.0,0.0]]}},
+  {"action":[false,true,false,false,false],"attributes":{"MayJump":false,"CanJumpHigher": false, "SmallMarioObservation": [[0.0,0.0,0.0,0.0],[0.0,0.0,0.0,0.0],[0.0,0.0,0.0,100.0],[0.0,0.0,0.0,0.0]]}},
+  {"action":[false,true,false,false,true],"attributes":{"MayJump":true,"CanJumpHigher": false, "SmallMarioObservation": [[0.0,0.0,0.0,0.0],[0.0,0.0,0.0,100.0],[0.0,0.0,0.0,0.0],[0.0,0.0,0.0,0.0]]}},
+  {"action":[false,true,false,false,false],"attributes":{"MayJump":false,"CanJumpHigher": false, "SmallMarioObservation": [[0.0,0.0,0.0,0.0],[0.0,0.0,0.0,100.0],[0.0,0.0,0.0,0.0],[0.0,0.0,0.0,0.0]]}},
+  {"action":[false,true,false,false,true],"attributes":{"MayJump":true,"CanJumpHigher": false, "SmallMarioObservation": [[0.0,0.0,0.0,100.0],[0.0,0.0,0.0,0.0],[0.0,0.0,0.0,0.0],[0.0,0.0,0.0,0.0]]}},
+  {"action":[false,true,false,false,false],"attributes":{"MayJump":false,"CanJumpHigher": false, "SmallMarioObservation": [[0.0,0.0,0.0,100.0],[0.0,0.0,0.0,0.0],[0.0,0.0,0.0,0.0],[0.0,0.0,0.0,0.0]]}},
+  {"action":[false,true,false,false,false],"attributes":{"MayJump":true,"CanJumpHigher": false, "SmallMarioObservation": [[0.0,0.0,0.0,0.0],[0.0,0.0,0.0,0.0],[0.0,0.0,0.0,0.0],[0.0,0.0,0.0,0.0]]}},
+  {"action":[false,true,false,false,true],"attributes":{"MayJump":false,"CanJumpHigher": true, "SmallMarioObservation": [[0.0,0.0,0.0,0.0],[0.0,0.0,0.0,0.0],[0.0,0.0,0.0,0.0],[0.0,0.0,0.0,0.0]]}},
+  {"action":[false,true,false,false,false],"attributes":{"MayJump":false,"CanJumpHigher": false, "SmallMarioObservation": [[0.0,0.0,0.0,0.0],[0.0,0.0,0.0,0.0],[0.0,0.0,0.0,0.0],[0.0,0.0,0.0,0.0]]}}],
+  "attributes":["MayJump","CanJumpHigher", "SmallMarioObservation"]
+}
