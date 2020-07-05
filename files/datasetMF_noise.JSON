@@ -1,0 +1,10 @@
+{
+  "examples":[
+    {"action":"Attack","attributes":{"Ammo":"With Ammo","Cover":"In Cover","Health":"Healthy"}},
+    {"action":"Attack","attributes":{"Ammo":"With Ammo","Cover":"In Cover","Health":"Hurt"}},
+    {"action":"Attack","attributes":{"Ammo":"With Ammo","Cover":"Exposed","Health":"Hurt"}},
+    {"action":"Attack","attributes":{"Ammo":"With Ammo","Cover":"Exposed","Health":"Hurt"}},
+    {"action":"Defend","attributes":{"Ammo":"Empty","Cover":"In Cover","Health":"Healthy"}},
+    {"action":"Defend","attributes":{"Ammo":"Empty","Cover":"In Cover","Health":"Hurt"}},
+    {"action":"Defend","attributes":{"Ammo":"With Ammo","Cover":"Exposed","Health":"Hurt"}}],
+  "attributes":["Health","Cover","Ammo"]}

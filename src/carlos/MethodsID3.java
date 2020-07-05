@@ -17,7 +17,10 @@ public class MethodsID3 {
 
         Dataset myDataset = FileManager.ReadJSON(datasetFilename);
 
-        //SplitByAttribute(myDataset);
+        SplitByAttribute(myDataset);
+        System.out.println("=============================");
+        System.out.println("ENTROPY  AND INFORMATION GAIN");
+        System.out.println("=============================");
         EntropyAndInformationGain(myDataset);
     }
 

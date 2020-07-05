@@ -26,6 +26,7 @@ public class DecisionTreeMF {
         decision1.daughterNodes.put("In Cover", action3);
 
         DecisionTree decisionTree = new DecisionTreeBasic(root);
+        decisionTree.PrintTree();
 
         Hashtable<String, Object> observation = new Hashtable<>();
         observation.put("Ammo", "Empty");

@@ -17,6 +17,8 @@ public class MakeID3 {
 
         String datasetFilename = "datasetMF";
         String decisionTreeFilename = "ID3Shooter";
+//        String datasetFilename = "datasetMF_noise";
+//        String decisionTreeFilename = "ID3Shooter_noise";
 //        String datasetFilename = "datasetQuinlan";
 //        String decisionTreeFilename = "ID3Sport";
 
