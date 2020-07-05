@@ -78,6 +78,8 @@ public class Agent implements MarioAgent {
         attributes.put("CanJumpHigher", model.getMarioCanJumpHigher());
         attributes.put("SmallMarioObservation", ArrayUtils.matrixToArrayList(ArrayUtils.getSubmatrix(model.getMarioSceneObservation(2),
                 9,5,13,9)));
+        attributes.put("SmallGroundMarioObservation", ArrayUtils.matrixToArrayList(ArrayUtils.getSubmatrix(model.getMarioSceneObservation(2),
+                9,9,13,10)));
         return attributes;
     }
 
