@@ -76,7 +76,7 @@ public class Agent implements MarioAgent {
         attributes.put("OnGround", model.isMarioOnGround());
         attributes.put("MayJump", model.mayMarioJump());
         attributes.put("CanJumpHigher", model.getMarioCanJumpHigher());
-        attributes.put("SmallMarioObservation", ArrayUtils.matrixToArrayList(ArrayUtils.getSubmatrix(model.getMarioSceneObservation(2),
+        attributes.put("SmallMarioObservation", ArrayUtils.matrixToArrayList(ArrayUtils.getSubmatrix(model.getMarioCompleteObservation(2,2),
                 9,5,13,9)));
         attributes.put("SmallGroundMarioObservation", ArrayUtils.matrixToArrayList(ArrayUtils.getSubmatrix(model.getMarioSceneObservation(2),
                 9,9,13,10)));
