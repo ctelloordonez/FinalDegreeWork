@@ -87,6 +87,7 @@ public class MarioRender extends JComponent implements FocusListener {
         Rectangle debugRect = new Rectangle(256/16, 240/4, 256/4, 256/4);
 
         g2d.setStroke(new BasicStroke(2));
+        g2d.setColor(Color.BLACK);
         g2d.drawRect(debugRect.x-1, debugRect.y-1, debugRect.width+2, debugRect.height+2);
         g2d.setPaint(Color.lightGray);
 
@@ -97,33 +98,19 @@ public class MarioRender extends JComponent implements FocusListener {
 
         MarioForwardModel model = new MarioForwardModel(world);
 
-        int[][] sceneObservation = model.getMarioSceneObservation(2);
-        int[][] enemiesObservation = model.getMarioEnemiesObservation(2);
-
-//        for(int i = 0; i < sceneObservation.length; i++){
-//            for(int j = 0; j< sceneObservation[0].length; j++){
-//                if(sceneObservation[i][j] != 0){
-//                    drawCube(g2d, debugRect, i, j, Color.WHITE);
-//                }
-//                if(enemiesObservation[i][j] != 0){
-//                    drawCube(g2d, debugRect, i, j, Color.BLACK);
-//                }
-//            }
-//        }
-        int[][] sceneVision = carlos.Utils.ArrayUtils.getSubmatrix(sceneObservation,6,5,13,11);
-        int[][] enemiesVision = carlos.Utils.ArrayUtils.getSubmatrix(enemiesObservation,6,5,13,11);
+        int[][] sceneObservation = model.getMarioCompleteObservation(2,2);
+        int[][] sceneVision = carlos.Utils.ArrayUtils.getSubmatrix(sceneObservation,9,6,13,10);
 
         for(int i = 0; i < sceneVision.length; i++){
             for(int j = 0; j< sceneVision[0].length; j++){
                 if(sceneVision[i][j] != 0){
-                    drawCube(g2d, debugRect, i + 6, j + 5, Color.WHITE);
-                }
-                if(enemiesVision[i][j] != 0){
-                    drawCube(g2d, debugRect, i + 6, j + 5, Color.BLACK);
+                    drawCube(g2d, debugRect, i + 9, j + 6, Color.WHITE);
                 }
             }
         }
 
+        drawBox(g, debugRect, 9, 6, 4, 3, Color.ORANGE);
+        drawBox(g, debugRect, 9, 9, 4, 1, Color.MAGENTA);
         drawMario(g2d, debugRect, model.getMarioMode());
     }
 

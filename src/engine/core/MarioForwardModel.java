@@ -38,7 +38,8 @@ public class MarioForwardModel {
     public static final int OBS_CANNON = OBS_SCENE_SHIFT + 3;
     public static final int OBS_PIPE = OBS_SCENE_SHIFT + 18;
     // Scene detail level 2
-    public static final int OBS_SCENE_OBJECT = OBS_SCENE_SHIFT + 84;
+    public static final int OBS_SCENE_OBJECT = 1;
+//    public static final int OBS_SCENE_OBJECT = OBS_SCENE_SHIFT + 84;
 
     // Common between enemies detail level 0 and 1
     public static final int OBS_FIREBALL = 16;

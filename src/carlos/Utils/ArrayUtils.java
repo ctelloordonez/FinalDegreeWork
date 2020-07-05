@@ -1,5 +1,7 @@
 package carlos.Utils;
 
+import carlos.helper.Example;
+
 import java.util.ArrayList;
 
 public class ArrayUtils {
@@ -39,5 +41,19 @@ public class ArrayUtils {
             arrayList.add(i, (double) array[i]);
         }
         return arrayList;
+    }
+
+    public static <T> T[] addAll(T[] first, T[] second) {
+        T[] all = (T[]) new Example[first.length + second.length];
+        int i = 0;
+        for(int j = 0; j < first.length; j++){
+            all[i] = first[j];
+            i++;
+        }
+        for(int k = 0; k < second.length; k++){
+            all[i] = second[k];
+            i++;
+        }
+        return all;
     }
 }

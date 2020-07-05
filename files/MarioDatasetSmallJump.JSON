@@ -1,0 +1,6 @@
+{
+"examples":[
+  {"action":[false,false,false,false,true],"attributes":{"MayJump":true}},
+  {"action":[false,false,false,false,false],"attributes":{"MayJump":false}}],
+  "attributes":["MayJump"]
+}

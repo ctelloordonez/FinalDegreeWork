@@ -1,0 +1,7 @@
+{
+"examples":[
+  {"action":[false,false,false,false,true],"attributes":{"MayJump":true,"CanJumpHigher": false}},
+  {"action":[false,false,false,false,true],"attributes":{"MayJump":false,"CanJumpHigher": true}},
+  {"action":[false,false,false,false,false],"attributes":{"MayJump":false,"CanJumpHigher": false}}],
+  "attributes":["MayJump","CanJumpHigher"]
+}
