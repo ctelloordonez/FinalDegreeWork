@@ -34,10 +34,11 @@ public class PlayLevel {
     public static void main(String[] args) {
         MarioGame game = new MarioGame();
 
-//        printResults(game.runGame(new agents.carlosTello.Agent("JumpDatasetManual"), getLevel("./levels/carlosTello/plainLevel.txt"), 20, 0, true));
-//        printResults(game.runGame(new agents.carlosTello.Agent("JumpHigherDatasetManual"), getLevel("./levels/carlosTello/plainLevel.txt"), 20, 0, true));
-//        printResults(game.runGame(new agents.carlosTello.Agent("JumpBlockDatasetManual"), getLevel("./levels/carlosTello/jumpBlockLevel.txt"), 20, 0, true));
-//        printResults(game.runGame(new agents.carlosTello.Agent("JumpEnemyDatasetManual"), getLevel("./levels/carlosTello/jumpEnemyLevel.txt"), 20, 0, true));
-        printResults(game.runGame(new agents.carlosTello.Agent("completeSimpleDatasetManual"), getLevel("./levels/carlosTello/completeSimpleTrainLevel.txt"), 20, 0, true));
+//        printResults(game.runGame(new agents.carlosTello.Agent("MarioDatasetSmallJump"), getLevel("./levels/carlosTello/plainLevel.txt"), 20, 0, true));
+//        printResults(game.runGame(new agents.carlosTello.Agent("MarioDatasetHighJump"), getLevel("./levels/carlosTello/plainLevel.txt"), 20, 0, true));
+//        printResults(game.runGame(new agents.carlosTello.Agent("MarioDatasetSmallBlock"), getLevel("./levels/carlosTello/jumpBlockLevel.txt"), 20, 0, true));
+//        printResults(game.runGame(new agents.carlosTello.Agent("MarioDatasetEnemies"), getLevel("./levels/carlosTello/jumpEnemyLevel.txt"), 20, 0, true));
+//        printResults(game.runGame(new agents.carlosTello.Agent("MarioDatasetHole"), getLevel("./levels/carlosTello/jumpHoleLevel.txt"), 20, 0, true));
+        printResults(game.runGame(new agents.carlosTello.Agent("MarioDatasetComplete"), getLevel("./levels/carlosTello/completeSimpleTrainLevel.txt"), 20, 0, true));
     }
 }
