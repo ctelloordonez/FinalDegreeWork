@@ -88,6 +88,7 @@ public class ID4 extends DecisionTree {
             decisionNode = new Action(bestAction);
             return decisionNode;
         }
+
         // Remove this best attribute from the list passed to the next iteration
         List<String> newAttributes = new ArrayList<>(attributes);
         newAttributes.remove(bestSplitAttribute);
@@ -105,10 +106,10 @@ public class ID4 extends DecisionTree {
             else{
                 daughter = new MultiDecision();
             }
+
             // Recurse the algorithm
             daughter = makeTree(set, newAttributes,daughter);
-
-            // Add it to the tree
+            // Add the daughter node to the tree
             ((MultiDecision) decisionNode).daughterNodes.put(attributeValue, daughter);
 
         }
@@ -128,8 +129,8 @@ public class ID4 extends DecisionTree {
             if (!example.action.equals(treeNode.examples.get(0).action)) {
                 // ... make the node into a decision
                 DecisionTreeNode subTree = new MultiDecision();
-                makeTree(treeNode.examples,treeNode.examples.get(0).allAttributes(),subTree);
-                treeNode = subTree;
+
+                treeNode = makeTree(treeNode.examples,treeNode.examples.get(0).allAttributes(),subTree);
             }
         }
 
@@ -141,6 +142,9 @@ public class ID4 extends DecisionTree {
 
             // If there is no entropy, can't go further
             if (initialEntropy <= 0) {
+                List<Example> auxExamples = treeNode.examples;
+                treeNode = new Action(example.action);
+                treeNode.examples = auxExamples;
                 return treeNode;
             }
 
@@ -179,14 +183,20 @@ public class ID4 extends DecisionTree {
                 List<Example> exampleList = treeNode.examples;
                 List<String> attributeList = treeNode.examples.get(0).allAttributes();
                 DecisionTreeNode subtree = new MultiDecision();
-                makeTree(exampleList, attributeList, subtree);
-                treeNode = subtree;
+
+                treeNode = makeTree(exampleList, attributeList, subtree);;
             }
             // If the best attribute is still the same as before...
             else {
                 // ... continue incrementing the tree at the corresponding daughter node.
-                DecisionTreeNode dt = incrementTree(example, ((MultiDecision) treeNode).getBranch(example.getObservation()));
-                ((MultiDecision)treeNode).daughterNodes.put(example.getObservation().get(((MultiDecision)treeNode).testValue), dt);
+                DecisionTreeNode daughter;
+                if(((MultiDecision)treeNode).getBranch(example.getObservation()) == null){
+                    daughter = new MultiDecision();
+                }
+                else {
+                    daughter = ((MultiDecision)treeNode).getBranch(example.getObservation());
+                }
+                ((MultiDecision)treeNode).daughterNodes.put(example.getObservation().get(((MultiDecision)treeNode).testValue), incrementTree(example,daughter));
             }
         }
         return treeNode;
