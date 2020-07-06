@@ -1,11 +1,13 @@
-import java.io.IOException;
-import java.nio.file.Files;
-import java.nio.file.Paths;
+package carlos;
 
 import engine.core.MarioGame;
 import engine.core.MarioResult;
 
-public class PlayLevel {
+import java.io.IOException;
+import java.nio.file.Files;
+import java.nio.file.Paths;
+
+public class CompleteAgentPlayOriginals {
     public static void printResults(MarioResult result) {
         System.out.println("****************************************************************");
         System.out.println("Game Status: " + result.getGameStatus().toString() +
@@ -34,7 +36,8 @@ public class PlayLevel {
     public static void main(String[] args) {
         MarioGame game = new MarioGame();
 
-        printResults(game.runGame(new agents.robinBaumgarten.Agent(), getLevel("levels/original/lvl-1.txt"), 20, 0, true));
-//        printResults(game.playGame(getLevel("levels/original/lvl-1.txt"), 200, 0));
+        for(int i = 1; i <= 15; i++){
+            printResults(game.runGame(new agents.carlosTello.Agent("MarioDatasetComplete"), getLevel("levels/original/lvl-" +i +".txt"), 20, 0, true));
+        }
     }
 }

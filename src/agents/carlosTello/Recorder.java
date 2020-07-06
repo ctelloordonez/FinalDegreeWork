@@ -93,6 +93,7 @@ public class Recorder implements MarioAgent {
         attributes.put("MarioMode", model.getMarioMode());
         attributes.put("OnGround", model.isMarioOnGround());
         attributes.put("MayJump", model.mayMarioJump());
+        attributes.put("CanJumpHigher", model.getMarioCanJumpHigher());
         attributes.put("EnemiesObservation",
                 ArrayUtils.matrixToArrayList(ArrayUtils.getSubmatrix(model.getMarioEnemiesObservation(2),
                         6,5,16,11)));
@@ -109,7 +110,6 @@ public class Recorder implements MarioAgent {
 //        attributes.put("SceneObservation", model.getMarioSceneObservation(0));
 //        attributes.put("EnemiesPositions", model.getEnemiesFloatPos());
 //        attributes.put("MarioPosition", ArrayUtils.arrayToArrayList(model.getMarioScreenTilePos()));
-        attributes.put("CanJumpHigher", model.getMarioCanJumpHigher());
 
         return attributes;
     }
