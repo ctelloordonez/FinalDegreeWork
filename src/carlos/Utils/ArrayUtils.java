@@ -3,6 +3,7 @@ package carlos.Utils;
 import carlos.helper.Example;
 
 import java.util.ArrayList;
+import java.util.List;
 
 public class ArrayUtils {
 
@@ -26,6 +27,14 @@ public class ArrayUtils {
             arrayLists.add(i, aux);
         }
         return arrayLists;
+    }
+
+    public static List<Example> copyOfRange(ArrayList<Example>original,int start, int end){
+        List<Example> copy = new ArrayList<>();
+        for(int i = start; i < end+1; i++){
+            copy.add(original.get(i));
+        }
+        return copy;
     }
 
     public static ArrayList<Double> arrayToArrayList(int[] array){
