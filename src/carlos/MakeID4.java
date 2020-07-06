@@ -29,6 +29,10 @@ public class MakeID4 {
 
         ID4 decisionTree = new ID4(root);
         decisionTree.MakeTree(examplesList, attributesList);
+        System.out.println("=============================");
+        System.out.println("INITIAL TREE");
+        System.out.println("=============================");
+        decisionTree.PrintTree();
 
         String json = gson.toJson(decisionTree);
 
@@ -48,6 +52,10 @@ public class MakeID4 {
         Example e2 = new Example("Run", a2);
 
         decisionTree.IncrementTree(e1);
+        System.out.println("=============================");
+        System.out.println("FIRST INCREMENT");
+        System.out.println("=============================");
+        decisionTree.PrintTree();
         json = gson.toJson(decisionTree);
 
         System.out.println("Saving JSON at files");
@@ -55,6 +63,10 @@ public class MakeID4 {
         FileManager.WriteToFile(decisionTreeFilename + "FirstIncrement" + ".JSON", json);
 
         decisionTree.IncrementTree(e2);
+        System.out.println("=============================");
+        System.out.println("SECOND INCREMENT");
+        System.out.println("=============================");
+        decisionTree.PrintTree();
         json = gson.toJson(decisionTree);
 
         System.out.println("Saving JSON at files");
